@@ -100,7 +100,7 @@
 
 <script>
 fetch('data/fda_summary.json').then(r=>r.json()).then(d=>{
-  const C={navy:'#333f43',teal:'#4f7268',amber:'#9c7448',red:'#9e5449',light:'#c9cfc6'};
+  const C={navy:'#0A1626',teal:'#1A3E6E',amber:'#7A4E24',red:'#93331F',light:'#B9C7DA'};
 
   const yrs=Object.keys(d.yearly);
   new Chart(document.getElementById('c-year'),{type:'bar',

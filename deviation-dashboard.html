@@ -124,7 +124,7 @@
 
 <script>
 let DATA=null;
-const SEV_COLORS={Minor:'#4f7268',Major:'#9c7448',Critical:'#9e5449'};
+const SEV_COLORS={Minor:'#1A3E6E',Major:'#7A4E24',Critical:'#93331F'};
 
 fetch('data/deviations.json').then(r=>r.json()).then(d=>{DATA=d;init();})
   .catch(()=>{document.querySelector('section.wrap').insertAdjacentHTML('afterbegin',
@@ -160,9 +160,9 @@ function render(){
   rows.forEach(r=>{const k=r.date.slice(0,7); (m[k]=m[k]||[]).push(r.closure_days);});
   const months=Object.keys(m).sort();
   mk('c-trend',{data:{labels:months,datasets:[
-    {type:'bar',label:'Deviations raised',data:months.map(k=>m[k].length),backgroundColor:'#c9cfc6',yAxisID:'y',order:2},
+    {type:'bar',label:'Deviations raised',data:months.map(k=>m[k].length),backgroundColor:'#B9C7DA',yAxisID:'y',order:2},
     {type:'line',label:'Avg days to close',data:months.map(k=>+(m[k].reduce((a,b)=>a+b,0)/m[k].length).toFixed(1)),
-     borderColor:'#333f43',backgroundColor:'#333f43',tension:.3,yAxisID:'y1',order:1,pointRadius:3}]},
+     borderColor:'#0A1626',backgroundColor:'#0A1626',tension:.3,yAxisID:'y1',order:1,pointRadius:3}]},
    options:{responsive:true,interaction:{mode:'index',intersect:false},
     scales:{y:{title:{display:true,text:'Deviations'},beginAtZero:true},
             y1:{position:'right',title:{display:true,text:'Days to close'},grid:{drawOnChartArea:false},beginAtZero:true}}}});
@@ -170,7 +170,7 @@ function render(){
   // categories
   const c={}; rows.forEach(r=>c[r.category]=(c[r.category]||0)+1);
   const ck=Object.keys(c).sort((a,b)=>c[b]-c[a]);
-  mk('c-cat',{type:'bar',data:{labels:ck,datasets:[{data:ck.map(k=>c[k]),backgroundColor:'#4f7268'}]},
+  mk('c-cat',{type:'bar',data:{labels:ck,datasets:[{data:ck.map(k=>c[k]),backgroundColor:'#1A3E6E'}]},
    options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true}}}});
 
   // dept x severity
@@ -200,7 +200,7 @@ function renderTable(rows){
   document.querySelector('#tbl tbody').innerHTML=s.slice(0,80).map(r=>
    `<tr><td>${r.id}</td><td>${r.date}</td><td>${r.dept}</td><td>${r.category}</td>
     <td><span style="color:${SEV_COLORS[r.severity]};font-weight:600">${r.severity}</span></td>
-    <td class="num"${r.overdue?' style="color:#9e5449;font-weight:600"':''}>${r.closure_days}</td>
+    <td class="num"${r.overdue?' style="color:#93331F;font-weight:600"':''}>${r.closure_days}</td>
     <td>${r.capa?'Yes':'—'}</td></tr>`).join('');
   document.getElementById('row-count').textContent=
     `Showing ${Math.min(80,s.length)} of ${s.length} matching deviations.`;
