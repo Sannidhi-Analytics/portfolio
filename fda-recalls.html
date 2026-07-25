@@ -91,7 +91,23 @@
     <p>Data retrieved from the <a href="https://open.fda.gov/apis/drug/enforcement/">openFDA Drug Enforcement API</a>, a public dataset published by the U.S. Food and Drug Administration. Aggregate counts (classification, voluntary/mandated status, recall dates) were obtained via the API's <code>count</code> endpoint across the full dataset. Root cause categorisation used 3,000 individual records with recall initiation dates from 1 January 2021 onward.</p>
     <p style="margin-top:10px">Recall reasons are free text, so categorisation applies regular expression pattern matching against defined cause categories, assigning each record to the first matching category in priority order. 6.1% of records did not match any pattern and are grouped as "Other". This approach is transparent and reproducible but will misclassify a small number of edge cases — a limitation worth stating rather than hiding.</p>
     <p style="margin-top:10px"><strong>Caveat on recent years:</strong> openFDA records are added as enforcement reports are published, so 2025 and 2026 counts understate eventual totals. Year-on-year comparisons involving the most recent two years should be treated as provisional.</p>
-    <p style="margin-top:10px">Analysis in Python (<code>fetch_fda.py</code>); charts rendered client-side with Chart.js. Data retrieved 25 July 2026.</p>
+    <p style="margin-top:10px">Charts rendered client-side with Chart.js. Data retrieved 25 July 2026.</p>
+
+    <div class="sources">
+      <a class="src-btn" href="https://github.com/Sannidhi-Analytics/portfolio/blob/main/data/fda_summary.json">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M2 2a1 1 0 011-1h7l4 4v9a1 1 0 01-1 1H3a1 1 0 01-1-1V2zm8 .5V5h2.5L10 2.5zM4 7h8v1H4V7zm0 3h8v1H4v-1z"/></svg>
+        View the aggregated data
+      </a>
+      <a class="src-btn" href="https://github.com/Sannidhi-Analytics/portfolio/blob/main/scripts/fetch_fda.py">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.7 3.3L1 7l3.7 3.7 1-1L3 7l2.7-2.7-1-1zm6.6 0l-1 1L13 7l-2.7 2.7 1 1L15 7l-3.7-3.7z"/></svg>
+        View the analysis code
+      </a>
+      <a class="src-btn" href="https://open.fda.gov/apis/drug/enforcement/">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M9 2v1.5h2.4L6.2 8.7l1.1 1.1 5.2-5.2V7H14V2H9zM3 4h4v1.5H4.5v6H11V9h1.5v4H3V4z"/></svg>
+        Original openFDA source
+      </a>
+    </div>
+    <p class="src-note">Re-running <code>fetch_fda.py</code> pulls live data from the FDA API, so the figures refresh with each execution.</p>
   </div>
 
 </section>

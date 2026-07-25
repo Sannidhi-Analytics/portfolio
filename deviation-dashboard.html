@@ -116,6 +116,18 @@
     <p>This dashboard runs on a <strong>synthetic dataset of 240 deviation records</strong> generated to mirror the structure, severity distribution, and closure patterns of a real GMP quality system. No confidential or employer data is used — this is deliberate, and the same discipline I would apply to any data leaving a regulated site.</p>
     <p style="margin-top:10px">The generator (<code>generate_data.py</code>) models a realistic severity mix, department distribution, and a closure-time improvement trend across the period. Recurrence probability is conditioned on whether a CAPA was raised. Aggregation and analysis are in Python; the front end is Chart.js with no framework dependency.</p>
     <p style="margin-top:10px"><strong>Why this project:</strong> deviation and CAPA performance is the metric set I worked with directly as a Quality Associate, where I reduced deviation resolution time by 30% through structured root cause investigation. This dashboard is the reporting layer I would build to make that kind of improvement visible to management month by month.</p>
+
+    <div class="sources">
+      <a class="src-btn" href="https://github.com/Sannidhi-Analytics/portfolio/blob/main/data/deviations.json">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M2 2a1 1 0 011-1h7l4 4v9a1 1 0 01-1 1H3a1 1 0 01-1-1V2zm8 .5V5h2.5L10 2.5zM4 7h8v1H4V7zm0 3h8v1H4v-1z"/></svg>
+        View the dataset (240 records)
+      </a>
+      <a class="src-btn" href="https://github.com/Sannidhi-Analytics/portfolio/blob/main/scripts/generate_data.py">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.7 3.3L1 7l3.7 3.7 1-1L3 7l2.7-2.7-1-1zm6.6 0l-1 1L13 7l-2.7 2.7 1 1L15 7l-3.7-3.7z"/></svg>
+        View the generator code
+      </a>
+    </div>
+    <p class="src-note">The generator uses a fixed random seed, so anyone running it reproduces this exact dataset.</p>
   </div>
 
 </section>

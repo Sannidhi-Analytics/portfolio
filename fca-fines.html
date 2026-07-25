@@ -114,7 +114,19 @@
     <p>Every record was transcribed from the FCA's published annual fines pages for <a href="https://www.fca.org.uk/news/news-stories/2023-fines">2023</a>, <a href="https://www.fca.org.uk/news/news-stories/2024-fines">2024</a> and <a href="https://www.fca.org.uk/news/news-stories/2025-fines">2025</a>. Each entry lists the entity fined, date, penalty amount, and a summary of the breach.</p>
     <p style="margin-top:10px"><strong>Validation:</strong> computed annual totals reconcile exactly to the FCA's own published figures — £53,354,600 for 2023, £176,045,385 for 2024, and £124,221,367 for 2025. This confirms the dataset is complete and correctly transcribed rather than a partial sample.</p>
     <p style="margin-top:10px">Breach themes and sectors were assigned by reading each Final Notice summary and grouping by the substantive regulatory failure. This is judgement-based categorisation, not automated, and another analyst might reasonably group a handful of borderline cases differently. Court fines (two small data protection prosecutions in 2025) are excluded, consistent with the FCA's own treatment, as they were imposed by a court rather than issued by the FCA.</p>
-    <p style="margin-top:10px">Dataset available as <code>fca_fines.csv</code> in the repository. Data retrieved 25 July 2026.</p>
+    <p style="margin-top:10px">Data retrieved 25 July 2026.</p>
+
+    <div class="sources">
+      <a class="src-btn" href="https://github.com/Sannidhi-Analytics/portfolio/blob/main/data/fca_fines.csv">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M2 2a1 1 0 011-1h7l4 4v9a1 1 0 01-1 1H3a1 1 0 01-1-1V2zm8 .5V5h2.5L10 2.5zM4 7h8v1H4V7zm0 3h8v1H4v-1z"/></svg>
+        View the dataset (60 rows)
+      </a>
+      <a class="src-btn" href="https://github.com/Sannidhi-Analytics/portfolio/blob/main/scripts/analyse_fca.py">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.7 3.3L1 7l3.7 3.7 1-1L3 7l2.7-2.7-1-1zm6.6 0l-1 1L13 7l-2.7 2.7 1 1L15 7l-3.7-3.7z"/></svg>
+        View the analysis code
+      </a>
+    </div>
+    <p class="src-note">The script prints a validation check reconciling each year's total against the FCA's published figure — all three return MATCH.</p>
   </div>
 
 </section>
