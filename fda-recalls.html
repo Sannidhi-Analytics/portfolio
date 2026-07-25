@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FDA Drug Recall Analysis — Sannidhi Shetty</title>
+<link rel="stylesheet" href="assets/styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header class="page">
+  <div class="wrap">
+    <a href="index.html" class="back">&larr; Back to portfolio</a>
+    <h1>What Actually Causes Drug Recalls</h1>
+    <p>An analysis of 17,816 FDA drug enforcement records, with 3,000 recent recalls categorised by root cause. Live data from the openFDA API.</p>
+  </div>
+</header>
+
+<section class="wrap">
+
+  <div class="kpis">
+    <div class="kpi"><div class="v">17,816</div><div class="l">Total recall records</div><div class="s">All years in openFDA</div></div>
+    <div class="kpi"><div class="v">3,000</div><div class="l">Analysed in depth</div><div class="s">2021 onwards</div></div>
+    <div class="kpi"><div class="v">80.7%</div><div class="l">Class II recalls</div><div class="s">Temporary/reversible harm</div></div>
+    <div class="kpi"><div class="v">99.6%</div><div class="l">Firm-initiated</div><div class="s">Only 29 FDA-mandated</div></div>
+    <div class="kpi"><div class="v">36.6%</div><div class="l">Cite CGMP deviations</div><div class="s">Largest single cause</div></div>
+  </div>
+
+  <h2>Findings</h2>
+  <p class="lede">Six things the data says about why regulated product leaves the market.</p>
+
+  <div class="finding">
+    <strong>CGMP deviations are the largest single recall cause, at 36.6% of recent recalls</strong>
+    <p>1,098 of 3,000 recalls since 2021 cite current good manufacturing practice deviations. This is the category most directly under a QA function's control — it is not raw material failure or a supplier problem, but the manufacturer's own systems, documentation, and process control falling short.</p>
+  </div>
+  <div class="finding">
+    <strong>Contamination is a close second at 34.1%, and the two causes together explain 71% of recalls</strong>
+    <p>1,023 recalls cite microbial contamination, sterility failure, foreign matter, or particulates. Between CGMP and contamination, nearly three quarters of all recent drug recalls come down to manufacturing environment and process control — not product design or formulation science.</p>
+  </div>
+  <div class="finding">
+    <strong>Recalls are overwhelmingly voluntary — the regulator rarely has to compel one</strong>
+    <p>17,752 recalls were firm-initiated against just 29 FDA-mandated. The enforcement model works through firms self-identifying and self-reporting, which places enormous weight on internal quality systems catching problems before a regulator does.</p>
+  </div>
+  <div class="finding">
+    <strong>Class I recalls — the serious-harm category — fell from 64 in 2021 to 22 in 2025</strong>
+    <p>Class I recalls (reasonable probability of serious adverse health consequences or death) declined across the period even as total volumes fluctuated. Class II dominates throughout at roughly 80% of all recalls.</p>
+  </div>
+  <div class="finding">
+    <strong>Recall volume has fallen sharply since the 2019 peak</strong>
+    <p>Annual recall initiations peaked at 1,788 in 2019 and dropped to 930 in 2020. Recent years run well below the pre-2020 baseline. Note that recent-year figures are subject to reporting lag — records are added as investigations conclude, so 2025 and 2026 counts will rise over time.</p>
+  </div>
+  <div class="finding">
+    <strong>Recall counts concentrate heavily in a small number of firms</strong>
+    <p>The ten most-recalled firms account for a disproportionate share of recent records. Compounding pharmacies and large distributors feature prominently — distributors often appear because they recall product manufactured elsewhere, so a high count does not by itself indicate poor manufacturing quality.</p>
+  </div>
+
+  <h2 style="margin-top:44px">Charts</h2>
+
+  <div class="chart-box">
+    <h3>Recall initiations by year, 2015–2026</h3>
+    <p class="sub">Counts derived from all recall initiation dates in the openFDA enforcement dataset. Recent years are incomplete due to reporting lag.</p>
+    <canvas id="c-year" height="100"></canvas>
+  </div>
+
+  <div class="chart-2">
+    <div class="chart-box">
+      <h3>Root cause categories</h3>
+      <p class="sub">3,000 recalls from 2021 onward, categorised from free-text recall reasons</p>
+      <canvas id="c-reason" height="210"></canvas>
+    </div>
+    <div class="chart-box">
+      <h3>Classification mix by year</h3>
+      <p class="sub">Class I is most severe; Class III least</p>
+      <canvas id="c-class" height="210"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <h3>Firms with the most recall records since 2021</h3>
+    <p class="sub">Includes distributors recalling product manufactured by others</p>
+    <canvas id="c-firm" height="130"></canvas>
+  </div>
+
+  <h2 style="margin-top:44px">What this means for a quality function</h2>
+  <p>If CGMP deviations and contamination drive roughly seven in ten recalls, then the highest-leverage quality activities are the unglamorous ones: batch record review that catches documentation gaps before release, environmental monitoring that flags excursions early, and deviation investigations that find genuine root cause rather than closing on "operator error". The data does not point toward more sophisticated analytical testing — it points toward tighter control of what happens on the floor every day.</p>
+  <p style="margin-top:14px">The voluntary-recall finding reinforces this. A regulator that mandates only 29 recalls out of 17,816 is a regulator relying on firms to police themselves. That reliance is exactly what internal audit readiness, change control discipline, and honest deviation reporting exist to justify.</p>
+
+  <div class="method">
+    <h3>Method &amp; data provenance <span class="badge b-real">Real regulatory data</span></h3>
+    <p>Data retrieved from the <a href="https://open.fda.gov/apis/drug/enforcement/">openFDA Drug Enforcement API</a>, a public dataset published by the U.S. Food and Drug Administration. Aggregate counts (classification, voluntary/mandated status, recall dates) were obtained via the API's <code>count</code> endpoint across the full dataset. Root cause categorisation used 3,000 individual records with recall initiation dates from 1 January 2021 onward.</p>
+    <p style="margin-top:10px">Recall reasons are free text, so categorisation applies regular expression pattern matching against defined cause categories, assigning each record to the first matching category in priority order. 6.1% of records did not match any pattern and are grouped as "Other". This approach is transparent and reproducible but will misclassify a small number of edge cases — a limitation worth stating rather than hiding.</p>
+    <p style="margin-top:10px"><strong>Caveat on recent years:</strong> openFDA records are added as enforcement reports are published, so 2025 and 2026 counts understate eventual totals. Year-on-year comparisons involving the most recent two years should be treated as provisional.</p>
+    <p style="margin-top:10px">Analysis in Python (<code>fetch_fda.py</code>); charts rendered client-side with Chart.js. Data retrieved 25 July 2026.</p>
+  </div>
+
+</section>
+
+<footer><div class="wrap">Sannidhi Shetty — Quality &amp; Compliance Analytics Portfolio · <a href="index.html">All projects</a> · Source: <a href="https://open.fda.gov/">openFDA</a></div></footer>
+
+<script>
+fetch('data/fda_summary.json').then(r=>r.json()).then(d=>{
+  const C={navy:'#12283f',teal:'#2f7d8f',amber:'#b8792c',red:'#b3453a',light:'#cfe0ec'};
+
+  const yrs=Object.keys(d.yearly);
+  new Chart(document.getElementById('c-year'),{type:'bar',
+   data:{labels:yrs,datasets:[{label:'Recalls initiated',data:yrs.map(y=>d.yearly[y]),
+     backgroundColor:yrs.map(y=>+y>=2025?C.light:C.teal)}]},
+   options:{plugins:{legend:{display:false},tooltip:{callbacks:{afterLabel:c=>
+     +c.label>=2025?'Provisional — subject to reporting lag':''}}},
+    scales:{y:{beginAtZero:true,title:{display:true,text:'Recalls'}}}}});
+
+  const rk=Object.keys(d.reason_categories);
+  new Chart(document.getElementById('c-reason'),{type:'bar',
+   data:{labels:rk,datasets:[{data:rk.map(k=>d.reason_categories[k]),
+     backgroundColor:rk.map(k=>k==='Other'?'#b9c6d1':C.teal)}]},
+   options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true}}}});
+
+  const cy=Object.keys(d.yearly_class);
+  new Chart(document.getElementById('c-class'),{type:'bar',
+   data:{labels:cy,datasets:[
+     {label:'Class I',data:cy.map(y=>d.yearly_class[y]['Class I']||0),backgroundColor:C.red},
+     {label:'Class II',data:cy.map(y=>d.yearly_class[y]['Class II']||0),backgroundColor:C.amber},
+     {label:'Class III',data:cy.map(y=>d.yearly_class[y]['Class III']||0),backgroundColor:C.teal}]},
+   options:{scales:{x:{stacked:true},y:{stacked:true,beginAtZero:true}}}});
+
+  new Chart(document.getElementById('c-firm'),{type:'bar',
+   data:{labels:d.top_firms.map(f=>f[0].length>42?f[0].slice(0,40)+'…':f[0]),
+     datasets:[{data:d.top_firms.map(f=>f[1]),backgroundColor:C.navy}]},
+   options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true}}}});
+}).catch(()=>{document.querySelector('section.wrap').insertAdjacentHTML('afterbegin',
+  '<div class="disclaimer">Data file could not be loaded. If viewing locally, run a local web server (see README) — browsers block file:// fetch requests.</div>');});
+</script>
+</body>
+</html>

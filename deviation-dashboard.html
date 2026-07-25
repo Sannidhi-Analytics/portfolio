@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GMP Deviation &amp; CAPA Dashboard — Sannidhi Shetty</title>
+<link rel="stylesheet" href="assets/styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header class="page">
+  <div class="wrap">
+    <a href="index.html" class="back">&larr; Back to portfolio</a>
+    <h1>GMP Deviation &amp; CAPA Performance Dashboard</h1>
+    <p>A quality management review of 240 deviations across 24 months and four departments — tracking closure performance, root cause concentration, and whether CAPA actually prevents recurrence.</p>
+  </div>
+</header>
+
+<section class="wrap">
+
+  <div class="kpis">
+    <div class="kpi"><div class="v">240</div><div class="l">Deviations logged</div><div class="s">24-month period</div></div>
+    <div class="kpi"><div class="v" id="k-close">—</div><div class="l">Avg closure (days)</div><div class="s" id="k-close-trend">—</div></div>
+    <div class="kpi"><div class="v" id="k-overdue">—</div><div class="l">Closed past target</div><div class="s">16% of all deviations</div></div>
+    <div class="kpi"><div class="v">19</div><div class="l">Critical deviations</div><div class="s">7.9% of total</div></div>
+    <div class="kpi"><div class="v" id="k-recur">—</div><div class="l">Recurrence w/ CAPA</div><div class="s" id="k-recur-cmp">—</div></div>
+  </div>
+
+  <h2>What the data shows</h2>
+  <p class="lede">Five findings a Quality Manager could act on this quarter.</p>
+
+  <div class="finding">
+    <strong>Closure time improved 35% over the period — from 30.0 days to 19.5 days</strong>
+    <p>Average closure in the first six months was 30.0 days against 19.5 days in the final six. The improvement is steady rather than stepped, which points to a process change embedding over time rather than a one-off backlog clearance.</p>
+  </div>
+  <div class="finding">
+    <strong>Documentation errors are the single largest root cause at 23.8% of deviations</strong>
+    <p>57 of 240 deviations trace to documentation error, ahead of procedure-not-followed (49) and equipment failure (36). Combined, documentation and procedural failures account for 44% of the total — both are human-factor causes addressable through SOP clarity and training rather than capital spend.</p>
+  </div>
+  <div class="finding">
+    <strong>CAPA reduces recurrence by roughly two thirds</strong>
+    <p>Deviations with a CAPA raised recurred at 4.6%, against 12.4% for those closed without one. This is the clearest argument in the dataset for holding the line on CAPA even when a deviation looks minor and the pressure is to close it quickly.</p>
+  </div>
+  <div class="finding">
+    <strong>Manufacturing carries the highest deviation load, but Warehouse &amp; Supply Chain is close behind</strong>
+    <p>Manufacturing accounts for 70 deviations and Warehouse &amp; Supply Chain 61. The warehouse figure is worth attention — supply chain deviations are often under-reported relative to production floor issues, so a near-parity count may indicate either genuinely elevated risk or a recent improvement in reporting culture.</p>
+  </div>
+  <div class="finding">
+    <strong>39 deviations closed past their severity-based target</strong>
+    <p>Overdue closures concentrate in the earlier months and thin out considerably by 2026, consistent with the overall closure-time improvement. Residual overdue cases skew Major and Critical, where investigation complexity is genuinely higher.</p>
+  </div>
+
+  <h2 style="margin-top:44px">Charts</h2>
+  <p class="lede">Filter by department to isolate a specific area.</p>
+
+  <div class="controls">
+    <label class="ctl">Department
+      <select id="f-dept">
+        <option value="all">All departments</option>
+        <option>Manufacturing</option>
+        <option>Quality Control</option>
+        <option>Packaging</option>
+        <option>Warehouse &amp; Supply Chain</option>
+      </select>
+    </label>
+    <label class="ctl">Severity
+      <select id="f-sev">
+        <option value="all">All severities</option>
+        <option>Minor</option><option>Major</option><option>Critical</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="chart-box">
+    <h3>Deviation volume and average closure time by month</h3>
+    <p class="sub">Bars show deviations raised; the line shows average days to closure.</p>
+    <canvas id="c-trend" height="110"></canvas>
+  </div>
+
+  <div class="chart-2">
+    <div class="chart-box">
+      <h3>Root cause categories</h3>
+      <p class="sub">Where deviations originate</p>
+      <canvas id="c-cat" height="200"></canvas>
+    </div>
+    <div class="chart-box">
+      <h3>Severity mix by department</h3>
+      <p class="sub">Minor / Major / Critical split</p>
+      <canvas id="c-dept" height="200"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <h3>Closure time distribution by severity</h3>
+    <p class="sub">Median and spread of days-to-close. Wider spread signals inconsistent investigation practice.</p>
+    <canvas id="c-box" height="90"></canvas>
+  </div>
+
+  <h2 style="margin-top:44px">Deviation register</h2>
+  <p class="lede">The underlying records, filtered by the controls above. Sortable by clicking column headers.</p>
+  <div class="table-wrap">
+    <table id="tbl">
+      <thead><tr>
+        <th data-k="id">ID</th><th data-k="date">Date</th><th data-k="dept">Department</th>
+        <th data-k="category">Root cause</th><th data-k="severity">Severity</th>
+        <th data-k="closure_days" class="num">Days to close</th><th data-k="capa">CAPA</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <p style="font-size:.85rem;color:var(--muted)" id="row-count"></p>
+
+  <div class="method">
+    <h3>Method &amp; data provenance <span class="badge b-synth">Synthetic dataset</span></h3>
+    <p>This dashboard runs on a <strong>synthetic dataset of 240 deviation records</strong> generated to mirror the structure, severity distribution, and closure patterns of a real GMP quality system. No confidential or employer data is used — this is deliberate, and the same discipline I would apply to any data leaving a regulated site.</p>
+    <p style="margin-top:10px">The generator (<code>generate_data.py</code>) models a realistic severity mix, department distribution, and a closure-time improvement trend across the period. Recurrence probability is conditioned on whether a CAPA was raised. Aggregation and analysis are in Python; the front end is Chart.js with no framework dependency.</p>
+    <p style="margin-top:10px"><strong>Why this project:</strong> deviation and CAPA performance is the metric set I worked with directly as a Quality Associate, where I reduced deviation resolution time by 30% through structured root cause investigation. This dashboard is the reporting layer I would build to make that kind of improvement visible to management month by month.</p>
+  </div>
+
+</section>
+
+<footer><div class="wrap">Sannidhi Shetty — Quality &amp; Compliance Analytics Portfolio · <a href="index.html">All projects</a></div></footer>
+
+<script>
+let DATA=null;
+const SEV_COLORS={Minor:'#2f7d8f',Major:'#b8792c',Critical:'#b3453a'};
+
+fetch('data/deviations.json').then(r=>r.json()).then(d=>{DATA=d;init();})
+  .catch(()=>{document.querySelector('section.wrap').insertAdjacentHTML('afterbegin',
+   '<div class="disclaimer">Data file could not be loaded. If viewing locally, run a local web server (see README) — browsers block file:// fetch requests.</div>');});
+
+function filtered(){
+  const dp=document.getElementById('f-dept').value, sv=document.getElementById('f-sev').value;
+  return DATA.rows.filter(r=>(dp==='all'||r.dept===dp)&&(sv==='all'||r.severity===sv));
+}
+const charts={};
+function mk(id,cfg){ if(charts[id])charts[id].destroy(); charts[id]=new Chart(document.getElementById(id),cfg); }
+
+function init(){
+  const a=DATA.agg;
+  document.getElementById('k-close').textContent=a.closure_last6;
+  document.getElementById('k-close-trend').textContent='was '+a.closure_first6+' at start';
+  document.getElementById('k-overdue').textContent=DATA.rows.filter(r=>r.overdue).length;
+  document.getElementById('k-recur').textContent=(a.capa_recur.with_capa*100).toFixed(1)+'%';
+  document.getElementById('k-recur-cmp').textContent=(a.capa_recur.no_capa*100).toFixed(1)+'% without CAPA';
+  ['f-dept','f-sev'].forEach(i=>document.getElementById(i).addEventListener('change',render));
+  document.querySelectorAll('#tbl th').forEach(th=>th.style.cursor='pointer');
+  document.querySelectorAll('#tbl th').forEach(th=>th.addEventListener('click',()=>sortBy(th.dataset.k)));
+  render();
+}
+
+let sortK='date',sortAsc=true;
+function sortBy(k){ sortAsc = (k===sortK)? !sortAsc : true; sortK=k; renderTable(filtered()); }
+
+function render(){
+  const rows=filtered();
+  // monthly
+  const m={};
+  rows.forEach(r=>{const k=r.date.slice(0,7); (m[k]=m[k]||[]).push(r.closure_days);});
+  const months=Object.keys(m).sort();
+  mk('c-trend',{data:{labels:months,datasets:[
+    {type:'bar',label:'Deviations raised',data:months.map(k=>m[k].length),backgroundColor:'#cfe0ec',yAxisID:'y',order:2},
+    {type:'line',label:'Avg days to close',data:months.map(k=>+(m[k].reduce((a,b)=>a+b,0)/m[k].length).toFixed(1)),
+     borderColor:'#12283f',backgroundColor:'#12283f',tension:.3,yAxisID:'y1',order:1,pointRadius:3}]},
+   options:{responsive:true,interaction:{mode:'index',intersect:false},
+    scales:{y:{title:{display:true,text:'Deviations'},beginAtZero:true},
+            y1:{position:'right',title:{display:true,text:'Days to close'},grid:{drawOnChartArea:false},beginAtZero:true}}}});
+
+  // categories
+  const c={}; rows.forEach(r=>c[r.category]=(c[r.category]||0)+1);
+  const ck=Object.keys(c).sort((a,b)=>c[b]-c[a]);
+  mk('c-cat',{type:'bar',data:{labels:ck,datasets:[{data:ck.map(k=>c[k]),backgroundColor:'#2f7d8f'}]},
+   options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true}}}});
+
+  // dept x severity
+  const depts=['Manufacturing','Quality Control','Packaging','Warehouse & Supply Chain'];
+  mk('c-dept',{type:'bar',data:{labels:depts,datasets:['Minor','Major','Critical'].map(s=>({
+      label:s,data:depts.map(d=>rows.filter(r=>r.dept===d&&r.severity===s).length),backgroundColor:SEV_COLORS[s]}))},
+   options:{scales:{x:{stacked:true},y:{stacked:true,beginAtZero:true}}}});
+
+  // closure spread by severity (min/q1/median/q3/max as floating bars)
+  const sevs=['Minor','Major','Critical'];
+  const q=(arr,p)=>{const s=[...arr].sort((a,b)=>a-b);const i=(s.length-1)*p;const lo=Math.floor(i);
+    return s.length? (s[lo]+(s[Math.ceil(i)]-s[lo])*(i-lo)) : 0;};
+  const stats=sevs.map(s=>{const v=rows.filter(r=>r.severity===s).map(r=>r.closure_days);
+    return v.length?{q1:q(v,.25),med:q(v,.5),q3:q(v,.75)}:{q1:0,med:0,q3:0};});
+  mk('c-box',{type:'bar',data:{labels:sevs,datasets:[
+    {label:'Interquartile range (25th–75th percentile)',data:stats.map(s=>[s.q1,s.q3]),
+     backgroundColor:sevs.map(s=>SEV_COLORS[s]+'55'),borderColor:sevs.map(s=>SEV_COLORS[s]),borderWidth:1},
+    {label:'Median',data:stats.map(s=>[s.med-0.4,s.med+0.4]),backgroundColor:sevs.map(s=>SEV_COLORS[s])}]},
+   options:{indexAxis:'y',scales:{x:{beginAtZero:true,title:{display:true,text:'Days to close'}}}}});
+
+  renderTable(rows);
+}
+
+function renderTable(rows){
+  const s=[...rows].sort((a,b)=>{const x=a[sortK],y=b[sortK];
+    return (x<y?-1:x>y?1:0)*(sortAsc?1:-1);});
+  document.querySelector('#tbl tbody').innerHTML=s.slice(0,80).map(r=>
+   `<tr><td>${r.id}</td><td>${r.date}</td><td>${r.dept}</td><td>${r.category}</td>
+    <td><span style="color:${SEV_COLORS[r.severity]};font-weight:600">${r.severity}</span></td>
+    <td class="num"${r.overdue?' style="color:#b3453a;font-weight:600"':''}>${r.closure_days}</td>
+    <td>${r.capa?'Yes':'—'}</td></tr>`).join('');
+  document.getElementById('row-count').textContent=
+    `Showing ${Math.min(80,s.length)} of ${s.length} matching deviations.`;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FCA Enforcement Analysis — Sannidhi Shetty</title>
+<link rel="stylesheet" href="assets/styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header class="page">
+  <div class="wrap">
+    <a href="index.html" class="back">&larr; Back to portfolio</a>
+    <h1>Where UK Financial Regulation Bites</h1>
+    <p>Every FCA enforcement fine published across 2023, 2024 and 2025 — 60 actions totalling £353.6 million — analysed by breach type, sector, and whether the penalty landed on the firm or the individual.</p>
+  </div>
+</header>
+
+<section class="wrap">
+
+  <div class="kpis">
+    <div class="kpi"><div class="v">£353.6m</div><div class="l">Total fines</div><div class="s">2023–2025 combined</div></div>
+    <div class="kpi"><div class="v">60</div><div class="l">Enforcement actions</div><div class="s">Firms and individuals</div></div>
+    <div class="kpi"><div class="v">£151.6m</div><div class="l">Financial crime controls</div><div class="s">43% of all penalties</div></div>
+    <div class="kpi"><div class="v">95.5%</div><div class="l">Levied on firms</div><div class="s">vs 4.5% on individuals</div></div>
+    <div class="kpi"><div class="v">£6.5m</div><div class="l">Median firm penalty</div><div class="s">Mean £10.9m — skewed by outliers</div></div>
+  </div>
+
+  <h2>Findings</h2>
+  <p class="lede">What three years of enforcement reveals about regulatory priorities.</p>
+
+  <div class="finding">
+    <strong>Financial crime systems and controls failures attract the largest penalties — £151.6m across ten actions</strong>
+    <p>Anti-money-laundering and financial crime control failings account for 43% of all fine value from just 17% of actions. Nationwide (£44.1m), Barclays Bank plc (£39.3m), Starling (£29.0m) and Metro Bank (£16.7m) dominate. The pattern is consistent: the FCA reserves its heaviest penalties for firms whose control frameworks failed to detect or prevent criminal misuse.</p>
+  </div>
+  <div class="finding">
+    <strong>Firms pay 21 times more than individuals, but individuals are pursued far more often than fine value suggests</strong>
+    <p>Firms absorbed £337.8m against £15.8m for individuals — yet individuals account for 29 of the 60 actions, almost exactly half. Enforcement against people is frequent but individually modest, and it is nearly always paired with a prohibition order, which is the real sanction. A £6,000 fine that ends a career is not a light penalty.</p>
+  </div>
+  <div class="finding">
+    <strong>Unsuitable pension transfer advice is the most common breach type by count — 12 of 60 actions</strong>
+    <p>Pensions advice failures generated more separate enforcement actions than any other category, but only £11.7m in total value, because they overwhelmingly target individual advisers rather than institutions. This is the long tail of the defined benefit transfer scandal working through the enforcement pipeline.</p>
+  </div>
+  <div class="finding">
+    <strong>Enforcement value is volatile year to year — £53.4m, then £176.0m, then £124.2m</strong>
+    <p>2024 saw more than triple 2023's total. Single large penalties move the annual figure substantially, so year-on-year comparison of headline totals says more about which investigations concluded that year than about any shift in regulatory appetite. Action counts (12, 27, 21) are a steadier signal than fine value.</p>
+  </div>
+  <div class="finding">
+    <strong>Retail and investment banking carry the heaviest penalty burden</strong>
+    <p>Retail banking (£135.1m) and investment banking (£121.6m) together account for 72.6% of all fine value. Both sectors combine large customer bases, complex control environments, and high financial crime exposure — the conditions under which control failures become expensive.</p>
+  </div>
+  <div class="finding">
+    <strong>Principle 3 — adequate systems and controls — is the FCA's most-used enforcement tool</strong>
+    <p>Reading across the Final Notices, breaches of Principle 3 (or the associated SYSC rules requiring firms to organise and control their affairs responsibly with adequate risk management systems) underpin the majority of the largest penalties. Firms are rarely fined for a single bad outcome; they are fined because the system that should have caught it did not exist or did not work.</p>
+  </div>
+
+  <h2 style="margin-top:44px">Charts</h2>
+
+  <div class="chart-box">
+    <h3>Total fine value and action count by year</h3>
+    <p class="sub">Bars show fine value in £m; the line shows number of enforcement actions.</p>
+    <canvas id="c-year" height="100"></canvas>
+  </div>
+
+  <div class="chart-2">
+    <div class="chart-box">
+      <h3>Fine value by breach theme</h3>
+      <p class="sub">Total £ per category, 2023–2025</p>
+      <canvas id="c-theme" height="230"></canvas>
+    </div>
+    <div class="chart-box">
+      <h3>Action count by breach theme</h3>
+      <p class="sub">How often each category is enforced</p>
+      <canvas id="c-themecount" height="230"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <h3>Fine value by sector</h3>
+    <p class="sub">Where the penalties land</p>
+    <canvas id="c-sector" height="130"></canvas>
+  </div>
+
+  <h2 style="margin-top:44px">All enforcement actions</h2>
+  <p class="lede">Filter and sort the full dataset. Click any column header to sort.</p>
+  <div class="controls">
+    <label class="ctl">Year
+      <select id="f-year"><option value="all">All years</option><option>2025</option><option>2024</option><option>2023</option></select>
+    </label>
+    <label class="ctl">Type
+      <select id="f-type"><option value="all">Firms and individuals</option><option>Firm</option><option>Individual</option></select>
+    </label>
+    <label class="ctl">Search
+      <input type="search" id="f-q" placeholder="Entity or breach type…">
+    </label>
+  </div>
+  <div class="table-wrap">
+    <table id="tbl">
+      <thead><tr>
+        <th data-k="entity">Entity</th><th data-k="type">Type</th><th data-k="date">Date</th>
+        <th data-k="amount_gbp" class="num">Fine</th><th data-k="breach_theme">Breach theme</th><th data-k="sector">Sector</th>
+      </tr></thead><tbody></tbody>
+    </table>
+  </div>
+  <p style="font-size:.85rem;color:var(--muted)" id="row-count"></p>
+
+  <h2 style="margin-top:44px">Why a pharma QA professional built this</h2>
+  <p>Regulated is regulated. The FCA fining a bank for inadequate systems and controls under Principle 3 is doing the same thing the MHRA or FDA does when it cites a manufacturer for CGMP deviations: identifying that a control framework failed to do what it was designed to do. The vocabulary differs — Final Notice instead of Form 483, SYSC instead of Annex 1 — but the underlying discipline is identical. Define the control, evidence that it operates, investigate honestly when it fails, and fix the cause rather than the symptom.</p>
+  <p style="margin-top:14px">This analysis exists to demonstrate that the transfer is real and that I have done the reading. The categorisation required understanding what PRIN 2 and PRIN 3 actually require, why a transaction reporting breach under MiFIR sits in a different risk category to a market abuse case, and why the FCA pairs individual fines with prohibitions.</p>
+
+  <div class="method">
+    <h3>Method &amp; data provenance <span class="badge b-real">Real regulatory data</span></h3>
+    <p>Every record was transcribed from the FCA's published annual fines pages for <a href="https://www.fca.org.uk/news/news-stories/2023-fines">2023</a>, <a href="https://www.fca.org.uk/news/news-stories/2024-fines">2024</a> and <a href="https://www.fca.org.uk/news/news-stories/2025-fines">2025</a>. Each entry lists the entity fined, date, penalty amount, and a summary of the breach.</p>
+    <p style="margin-top:10px"><strong>Validation:</strong> computed annual totals reconcile exactly to the FCA's own published figures — £53,354,600 for 2023, £176,045,385 for 2024, and £124,221,367 for 2025. This confirms the dataset is complete and correctly transcribed rather than a partial sample.</p>
+    <p style="margin-top:10px">Breach themes and sectors were assigned by reading each Final Notice summary and grouping by the substantive regulatory failure. This is judgement-based categorisation, not automated, and another analyst might reasonably group a handful of borderline cases differently. Court fines (two small data protection prosecutions in 2025) are excluded, consistent with the FCA's own treatment, as they were imposed by a court rather than issued by the FCA.</p>
+    <p style="margin-top:10px">Dataset available as <code>fca_fines.csv</code> in the repository. Data retrieved 25 July 2026.</p>
+  </div>
+
+</section>
+
+<footer><div class="wrap">Sannidhi Shetty — Quality &amp; Compliance Analytics Portfolio · <a href="index.html">All projects</a> · Source: <a href="https://www.fca.org.uk/">Financial Conduct Authority</a></div></footer>
+
+<script>
+let ROWS=[];
+const C={navy:'#12283f',teal:'#2f7d8f',amber:'#b8792c',red:'#b3453a',light:'#cfe0ec',slate:'#5f7183'};
+const gbp=n=>'£'+n.toLocaleString('en-GB',{maximumFractionDigits:0});
+const gbpm=n=>'£'+(n/1e6).toFixed(1)+'m';
+
+fetch('data/fca_fines.json').then(r=>r.json()).then(d=>{
+  ROWS=d.map(r=>({...r,amount_gbp:+r.amount_gbp}));
+  charts(); ['f-year','f-type'].forEach(i=>document.getElementById(i).addEventListener('change',renderTable));
+  document.getElementById('f-q').addEventListener('input',renderTable);
+  document.querySelectorAll('#tbl th').forEach(th=>{th.style.cursor='pointer';
+    th.addEventListener('click',()=>{sortAsc=(th.dataset.k===sortK)?!sortAsc:false;sortK=th.dataset.k;renderTable();});});
+  renderTable();
+}).catch(()=>{document.querySelector('section.wrap').insertAdjacentHTML('afterbegin',
+  '<div class="disclaimer">Data file could not be loaded. If viewing locally, run a local web server (see README) — browsers block file:// fetch requests.</div>');});
+
+function agg(key,val){const o={};ROWS.forEach(r=>o[r[key]]=(o[r[key]]||0)+(val?r[val]:1));return o;}
+
+function charts(){
+  const yv=agg('year','amount_gbp'), yc=agg('year');
+  const yrs=['2023','2024','2025'];
+  new Chart(document.getElementById('c-year'),{data:{labels:yrs,datasets:[
+    {type:'bar',label:'Fine value (£m)',data:yrs.map(y=>+(yv[y]/1e6).toFixed(1)),backgroundColor:C.teal,yAxisID:'y'},
+    {type:'line',label:'Enforcement actions',data:yrs.map(y=>yc[y]),borderColor:C.navy,backgroundColor:C.navy,
+     yAxisID:'y1',tension:.2,pointRadius:4}]},
+   options:{interaction:{mode:'index',intersect:false},
+    scales:{y:{beginAtZero:true,title:{display:true,text:'£m'}},
+     y1:{position:'right',beginAtZero:true,grid:{drawOnChartArea:false},title:{display:true,text:'Actions'}}}}});
+
+  const tv=agg('breach_theme','amount_gbp'), tk=Object.keys(tv).sort((a,b)=>tv[b]-tv[a]);
+  new Chart(document.getElementById('c-theme'),{type:'bar',
+   data:{labels:tk,datasets:[{data:tk.map(k=>+(tv[k]/1e6).toFixed(2)),backgroundColor:C.teal}]},
+   options:{indexAxis:'y',plugins:{legend:{display:false},
+     tooltip:{callbacks:{label:c=>'£'+c.parsed.x+'m'}}},
+    scales:{x:{beginAtZero:true,title:{display:true,text:'£m'}}}}});
+
+  const tc=agg('breach_theme'), tck=Object.keys(tc).sort((a,b)=>tc[b]-tc[a]);
+  new Chart(document.getElementById('c-themecount'),{type:'bar',
+   data:{labels:tck,datasets:[{data:tck.map(k=>tc[k]),backgroundColor:C.amber}]},
+   options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true}}}});
+
+  const sv=agg('sector','amount_gbp'), sk=Object.keys(sv).sort((a,b)=>sv[b]-sv[a]).slice(0,10);
+  new Chart(document.getElementById('c-sector'),{type:'bar',
+   data:{labels:sk,datasets:[{data:sk.map(k=>+(sv[k]/1e6).toFixed(2)),backgroundColor:C.navy}]},
+   options:{indexAxis:'y',plugins:{legend:{display:false},
+     tooltip:{callbacks:{label:c=>'£'+c.parsed.x+'m'}}},
+    scales:{x:{beginAtZero:true,title:{display:true,text:'£m'}}}}});
+}
+
+let sortK='amount_gbp',sortAsc=false;
+function renderTable(){
+  const y=document.getElementById('f-year').value,t=document.getElementById('f-type').value,
+        q=document.getElementById('f-q').value.toLowerCase();
+  let r=ROWS.filter(x=>(y==='all'||x.year===y)&&(t==='all'||x.type===t)&&
+    (!q||x.entity.toLowerCase().includes(q)||x.breach_theme.toLowerCase().includes(q)||x.sector.toLowerCase().includes(q)));
+  r.sort((a,b)=>{const x=a[sortK],y2=b[sortK];return (x<y2?-1:x>y2?1:0)*(sortAsc?1:-1);});
+  document.querySelector('#tbl tbody').innerHTML=r.map(x=>
+   `<tr><td>${x.entity}</td><td>${x.type}</td><td>${x.date}</td>
+    <td class="num">${gbp(x.amount_gbp)}</td><td>${x.breach_theme}</td><td>${x.sector}</td></tr>`).join('');
+  const tot=r.reduce((s,x)=>s+x.amount_gbp,0);
+  document.getElementById('row-count').textContent=
+    `${r.length} action${r.length===1?'':'s'} shown · total ${gbpm(tot)}`;
+}
+</script>
+</body>
+</html>
