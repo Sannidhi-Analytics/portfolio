@@ -1,0 +1,61 @@
+entity,type,date,amount_gbp,year,breach_theme,sector
+Russel Gerrity,Individual,2025-12-19,309843,2025,Market abuse,Individual/Other
+Nationwide Building Society,Firm,2025-12-11,44078500,2025,Financial crime systems & controls,Retail banking
+Neil Dwane,Individual,2025-10-13,100281,2025,Market abuse,Individual/Other
+Poojan Sheth,Individual,2025-08-05,57600,2025,Market abuse,Investment banking
+Jorge Lopez Gonzalez,Individual,2025-08-05,100000,2025,Market abuse,Investment banking
+Diego Urra,Individual,2025-08-05,223400,2025,Market abuse,Investment banking
+Sigma Broking Limited,Firm,2025-07-29,1087300,2025,Transaction reporting,Trading firm
+Jean-Noel Alba,Individual,2025-07-25,1049500,2025,Individual conduct & integrity,Individual/Other
+James Edward Staley,Individual,2025-07-23,1107306.92,2025,Individual conduct & integrity,Investment banking
+Barclays Bank UK plc,Firm,2025-07-14,3093600,2025,Systems & controls / risk management,Retail banking
+Barclays Bank plc,Firm,2025-07-14,39314700,2025,Financial crime systems & controls,Investment banking
+Markos Theodosi Markou,Individual,2025-07-10,10000,2025,Individual conduct & integrity,Mortgages
+Monzo Bank Limited,Firm,2025-07-08,21091300,2025,Systems & controls / risk management,Retail banking
+Craig Donaldson,Individual,2025-07-02,167325,2025,Listing rules & disclosure,Individual/Other
+David Arden,Individual,2025-07-02,100950,2025,Listing rules & disclosure,Individual/Other
+Toni Fox,Individual,2025-05-30,567584,2025,Unsuitable advice (pensions),Pensions
+David Brian Price,Individual,2025-05-30,465415,2025,Unsuitable advice (pensions),Pensions
+The London Metal Exchange,Firm,2025-03-20,9245900,2025,Systems & controls / risk management,Exchange
+Mako Financial Markets Partnership LLP,Firm,2025-02-17,1662700,2025,Financial crime systems & controls,Trading firm
+Infinox Capital Limited,Firm,2025-01-27,99200,2025,Transaction reporting,Trading firm
+Arian Financial LLP,Firm,2025-01-09,288962.53,2025,Financial crime systems & controls,Trading firm
+Philip Pryke,Individual,2024-11-28,1377968,2024,Unsuitable advice (pensions),Pensions
+Andras Sebok,Individual,2024-11-26,123500,2024,Market abuse,Individual/Other
+Barclays Bank plc,Firm,2024-11-25,10000000,2024,Listing rules & disclosure,Investment banking
+Barclays plc,Firm,2024-11-25,30000000,2024,Listing rules & disclosure,Investment banking
+Macquarie Bank Limited London Branch,Firm,2024-11-18,13031400,2024,Systems & controls / risk management,Investment banking
+Craig Buchan,Individual,2024-11-14,6037,2024,Individual conduct & integrity,Investment advice
+Martin Paul Cooke,Individual,2024-11-14,6020,2024,Individual conduct & integrity,Investment advice
+Metro Bank plc,Firm,2024-11-12,16675200,2024,Financial crime systems & controls,Retail banking
+Leigh Mackey,Individual,2024-11-11,1102879,2024,Individual conduct & integrity,General insurance
+Kristo Kaarmann,Individual,2024-10-27,350000,2024,Individual conduct & integrity,Individual/Other
+Volkswagen Financial Services (UK) Limited,Firm,2024-10-21,5397600,2024,Treatment of customers,Consumer credit
+TSB Bank plc,Firm,2024-10-09,10910500,2024,Treatment of customers,Retail banking
+Starling Bank Limited,Firm,2024-09-27,28959426,2024,Financial crime systems & controls,Retail banking
+Alec John Cuthbert,Individual,2024-08-30,91693,2024,Unsuitable advice (pensions),Pensions
+PricewaterhouseCoopers LLP,Firm,2024-08-16,15000000,2024,Failure to report to regulator,Audit
+Martin Christopher Sarl,Individual,2024-08-14,5021,2024,Individual conduct & integrity,General insurance
+Forex TB Limited,Firm,2024-08-09,276100,2024,Treatment of customers,Trading firm
+Anthony Dale Cuming,Individual,2024-07-26,1691259,2024,Unsuitable advice (pensions),Pensions
+Steven Harbinder Singh Sahota,Individual,2024-07-26,1782343,2024,Unsuitable advice (pensions),Pensions
+Kyle Anthony Jones,Individual,2024-07-26,443153,2024,Unsuitable advice (pensions),Pensions
+CB Payments Limited,Firm,2024-07-23,3503546,2024,Systems & controls / risk management,E-money
+Kulvir Virk,Individual,2024-06-19,215500,2024,Unsuitable advice (pensions),Pensions
+HSBC UK Bank plc & others,Firm,2024-05-23,6280100,2024,Treatment of customers,Retail banking
+Citigroup Global Markets Ltd,Firm,2024-05-17,27766200,2024,Systems & controls / risk management,Investment banking
+James William Edward Lewis,Individual,2024-04-22,120300,2024,Individual conduct & integrity,Individual/Other
+Inspirational Financial Management Ltd,Firm,2024-03-11,897840,2024,Unsuitable advice (pensions),Pensions
+Floris Jakobus Huisamen,Individual,2024-02-13,31800,2024,Financial promotions,Issuer
+Dollar East (International Travel & Money Transfer) Ltd,Firm,2023-11-30,3600,2023,Competition Act infringement,Money transfer
+Hafiz Bros Travel & Money Transfer Limited,Firm,2023-11-30,11200,2023,Competition Act infringement,Money transfer
+LCC Trans-Sending Limited,Firm,2023-11-30,139500,2023,Competition Act infringement,Money transfer
+Equifax Limited,Firm,2023-10-13,11164400,2023,Systems & controls / risk management,Credit reference
+ADM Investor Services International Limited,Firm,2023-10-02,6470600,2023,Financial crime systems & controls,Wholesale brokers
+Andrew John Deeney,Individual,2023-09-28,397400,2023,Unsuitable advice (pensions),Pensions
+Bastion Capital London Limited,Firm,2023-07-13,2452700,2023,Financial crime systems & controls,Trading firm
+Paul Steel,Individual,2023-07-04,3694400,2023,Unsuitable advice (pensions),Pensions
+Mark Antony Abley,Individual,2023-06-26,106100,2023,Unsuitable advice (pensions),Pensions
+ED&F Man Capital Markets Ltd,Firm,2023-06-05,17219300,2023,Systems & controls / risk management,Trading firm
+Al Rayan Bank PLC,Firm,2023-01-11,4023600,2023,Financial crime systems & controls,Retail banking
+Guaranty Trust Bank (UK) Limited,Firm,2023-01-10,7671800,2023,Financial crime systems & controls,Wholesale banking

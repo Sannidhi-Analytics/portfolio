@@ -1,0 +1,153 @@
+{
+ "classification": [
+  {
+   "term": "Class II",
+   "count": 14381
+  },
+  {
+   "term": "Class I",
+   "count": 1733
+  },
+  {
+   "term": "Class III",
+   "count": 1701
+  },
+  {
+   "term": "Not Yet Classified",
+   "count": 1
+  }
+ ],
+ "yearly": {
+  "2015": 1733,
+  "2016": 1199,
+  "2017": 1141,
+  "2018": 1681,
+  "2019": 1788,
+  "2020": 930,
+  "2021": 1152,
+  "2022": 1390,
+  "2023": 1122,
+  "2024": 557,
+  "2025": 778,
+  "2026": 376
+ },
+ "voluntary": [
+  {
+   "term": "Voluntary: Firm initiated",
+   "count": 17752
+  },
+  {
+   "term": "FDA Mandated",
+   "count": 29
+  },
+  {
+   "term": "N/A",
+   "count": 23
+  },
+  {
+   "term": "",
+   "count": 12
+  }
+ ],
+ "status": [
+  {
+   "term": "Terminated",
+   "count": 14798
+  },
+  {
+   "term": "Ongoing",
+   "count": 2580
+  },
+  {
+   "term": "Completed",
+   "count": 438
+  }
+ ],
+ "reason_categories": {
+  "CGMP deviations": 1098,
+  "Contamination (microbial/foreign)": 1023,
+  "Potency/specification failures": 305,
+  "Other": 183,
+  "Labelling/packaging errors": 177,
+  "Impurities (incl. nitrosamines)": 153,
+  "Presence of undeclared ingredient": 45,
+  "Mix-ups/wrong product": 11,
+  "Stability failures": 5
+ },
+ "yearly_class": {
+  "2021": {
+   "Class II": 498,
+   "Class III": 65,
+   "Class I": 64
+  },
+  "2022": {
+   "Class II": 684,
+   "Class III": 44,
+   "Class I": 62
+  },
+  "2023": {
+   "Class II": 543,
+   "Class III": 46,
+   "Class I": 53
+  },
+  "2024": {
+   "Class II": 235,
+   "Class III": 41,
+   "Class I": 38
+  },
+  "2025": {
+   "Class II": 374,
+   "Class III": 37,
+   "Class I": 22
+  },
+  "2026": {
+   "Class II": 177,
+   "Class I": 5,
+   "Class III": 12
+  }
+ },
+ "top_firms": [
+  [
+   "Central Admixture Pharmacy Services, Inc.",
+   128
+  ],
+  [
+   "Cardinal Health Inc.",
+   105
+  ],
+  [
+   "Mckesson Medical-Surgical Inc. Corporate Office",
+   87
+  ],
+  [
+   "Akorn, Inc.",
+   78
+  ],
+  [
+   "Vita Pharmacy, LLC dba Talon Compounding Pharmacy",
+   71
+  ],
+  [
+   "Glenmark Pharmaceuticals Inc., USA",
+   71
+  ],
+  [
+   "Family Dollar Stores, Llc.",
+   61
+  ],
+  [
+   "SUN PHARMACEUTICAL INDUSTRIES INC",
+   56
+  ],
+  [
+   "Central Admixture Pharmacy Services Inc",
+   49
+  ],
+  [
+   "Olympia Compounding Pharmacy dba Olympia Pharmacy",
+   48
+  ]
+ ],
+ "records_analysed": 3000,
+ "total_recalls_all_time": 17816
+}
