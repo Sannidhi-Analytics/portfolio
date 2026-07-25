@@ -103,3 +103,4 @@ Python (standard library only) for data collection, categorisation and aggregati
 
 Sannidhi Shetty — Stirling, UK
 sannidhid43@gmail.com
+[LinkedIn](https://www.linkedin.com/in/sannidhishetty0801/)
